@@ -70,3 +70,7 @@ if self.loss_log.shape[0] >= 3:
         print(f'< warning: lr needs to be set larger -- {loss_trend} >')
 ```
 The purpose of this section of code is to check whether the lr setting is too small when the iteration count reaches the upper limit, resulting in a huge empty space. By setting multiple checkpoints in the iteration, it is determined whether the optimization level of the current checkpoint has significantly decreased compared to the previous checkpoint at the end of the iteration. If not, it indicates that there is still a lot of empty space and the learning rate lr is set too low.
+
+
+## More instructions
+For more information please visit the blog: http://t.csdn.cn/NnL4n
