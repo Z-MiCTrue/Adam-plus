@@ -17,13 +17,14 @@ Adam-core: the test script to verify Adam's response characteristics to impulse 
 
 
 ## Requirements:
-numpy
-matplotlib [Optional]
+1. numpy
+
+2. matplotlib [Optional]
 
 
 ## Quick Start: modify parameters in > Adam_plus.py
 ### Instantiation of the optimizer
-```
+```python
 Oa = Optimizer_Adam((2, 2), lr=5e-2, integrate=1e-4))
  
 # (2, 2) 代表了 (起点数=2, 待优化参数=2)
@@ -33,27 +34,27 @@ Oa = Optimizer_Adam((2, 2), lr=5e-2, integrate=1e-4))
 The integer is exactly the small step size for approximate derivation. If the parameter is required to be an integer (such as optimizing the number of products produced each time), it can be set to 1. If anisotropy is required, it can be modified to an array (e.g. Oa.integrate=np.array ([0.1, 1]))
 
 ### Set starting point set
-```
+```python
 Oa.vector_x = np.array([[0., 0.],  # seed 1
                         [7., 17.]])  # seed 2
 ```
 The initial number of seeds and optimization parameters set here need to be consistent with the settings when instantiating the optimizer, which will simultaneously iterate on them in batches. This option is optional. If not specified, the optimizer will generate a corresponding number of seeds randomly within the parameter constraint range by default.
 
 ### Set parameter constraint range
-```
+```python
 Oa.variable_range = np.array([[-100, 100],  # 参数 1
                               [-100, 100]])  # 参数 2
 ```
 This is an optional setting. If not specified, the optimizer will default to the entire real number field for optimization.
 
 ### Set aim function
-```
+```python
 Oa.aim_function = test_func
 ```
 The function entry address is assigned to the optimizer here for later calls.
 
 ### Start optimization
-```
+```python
 solve = Oa.run(max_time=1e4, min_grade=1e-4)
 print(f'solve:\n{solve}')
  
@@ -62,7 +63,7 @@ print(f'solve:\n{solve}')
 ```
 
 ### *Check lr status
-```
+```python
 if self.loss_log.shape[0] >= 3:
     loss_trend = (self.loss_log[-1] - self.loss_log[-2]) / (self.loss_log[-2] - self.loss_log[-3] + 1e-9)
     if np.min(loss_trend) > 0.1:
