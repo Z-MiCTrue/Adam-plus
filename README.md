@@ -22,7 +22,7 @@ Adam-core: the test script to verify Adam's response characteristics to impulse 
 2. matplotlib [Optional]
 
 
-## Quick Start: modify parameters in *Adam_plus.py*
+## Quick Start: modify parameters in `Adam_plus.py`
 ### Instantiation of the optimizer
 ```python
 Oa = Optimizer_Adam((2, 2), lr=5e-2, integrate=1e-4))
