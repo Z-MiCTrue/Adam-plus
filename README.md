@@ -240,9 +240,3 @@ So the following conclusion can be drawn:
 Reference:
 
 [1] Kingma D ,  Ba J . Adam: A Method for Stochastic Optimization[J]. Computer Science, 2014.
-
-
-
-
-## More instructions
-For more information please visit the blog: <http://t.csdn.cn/NnL4n>
