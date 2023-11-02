@@ -103,18 +103,20 @@ The purpose of this section of code is to check whether the lr setting is too sm
 
 ### 1. Overall process
 
-![](./Figures/overall process.png)
+<img src="./Figures/overall process.png" alt="pseudocode" />
 
 ### 2. Essentially: IIR digital filters filter gradient signals
 
 If Momentum-SGD incorporates the concept of momentum from physics into gradient descent, I would prefer to believe that Adam takes into account the concept of IIR filters in digital signal processing:
 
-$${m_{t}\leftarrow\beta_{1}\cdot m_{t-1}+(1-\beta_{1})\cdot g_{t}}\\{v_{t}\leftarrow\beta_{2}\cdot v_{t-1}+(1-\beta_{2})\cdot g_{t}^{2}}$$
-
+$$
+{m_{t}\leftarrow\beta_{1}\cdot m_{t-1}+(1-\beta_{1})\cdot g_{t}}\\{v_{t}\leftarrow\beta_{2}\cdot v_{t-1}+(1-\beta_{2})\cdot g_{t}^{2}}
+$$
 Iterations after iterations, these two lines are the core of Adam, if $ beta_ 1=0.9 $, unfold it to obtain:
 
-$$m_{100}=0.1\theta_{100}+0.1*0.9\theta_{99}+0.1*(0.9)^2\theta_{98}+0.1*(0.9)^3\theta_{97}+0.1*(0.9)^4\theta_{96}$$
-
+$$
+m_{100}=0.1\theta_{100}+0.1*0.9\theta_{99}+0.1*(0.9)^2\theta_{98}+0.1*(0.9)^3\theta_{97}+0.1*(0.9)^4\theta_{96}
+$$
 If the gradient calculated after each iteration is regarded as an impulse signal, then as the number of iterations increases, the impulse signal multiplied by its corresponding weight will appear as an exponential decay signal in time as follows:
 
 <img src="./Figures/exponential decay signal.png" alt="exponential decay signal" style="zoom:50%;" />
@@ -129,8 +131,9 @@ Meanwhile, the system function of a system where the unit impulse response is an
 
 The system function representation of IIR digital filters is as follows:
 
-$$H(z)=\frac{Y(z)}{X(z)}=\frac{\sum_{i=0}^Ma_iz^{-i}}{1-\sum_{i=1}^Nb_iz^{-i}}=a_0\frac{\prod_{i=1}^M(1-c_iz^{-1})}{\prod_{i=1}^N(1-d_iz^{-1})}$$
-
+$$
+H(z)=\frac{Y(z)}{X(z)}=\frac{\sum_{i=0}^Ma_iz^{-i}}{1-\sum_{i=1}^Nb_iz^{-i}}=a_0\frac{\prod_{i=1}^M(1-c_iz^{-1})}{\prod_{i=1}^N(1-d_iz^{-1})}
+$$
 The processing of historical gradients in Adam can be seen as an IIR digital filtering process with only low order terms, which involves filtering gradients and filtering gradients squared (response amplitude). In my opinion, the correction of errors is mainly aimed at correcting the impact of zero state response.
 
 **So from this perspective, there are two ways to increase Adam's sensitivity to gradients (and vice versa):**
@@ -143,7 +146,10 @@ The processing of historical gradients in Adam can be seen as an IIR digital fil
 
 Without adding an offset correction term, the equivalent formula for Adam can be derived from the previous section as follows:
 
-$$S(t)=-lr\cdot\frac{(1-\beta_1)\cdot[g(t)^*\beta_1^t]}{\sqrt{(1-\beta_2)\cdot[g^2(t)^*\beta_2^t]}}$$
+$$
+S(t)=-lr\cdot\frac{(1-\beta_1)\cdot[g(t)^*\beta_1^t]}{\sqrt{(1-\beta_2)\cdot[g^2(t)^*\beta_2^t]}}
+$$
+
 
 > Where S(t) is the final step sequence; g(t) is a gradient sequence; * Represents convolution;
 
