@@ -103,7 +103,7 @@ The purpose of this section of code is to check whether the lr setting is too sm
 
 ### 1. Overall process
 
-![pseudocode](./Figures/overall process.png)
+![](./Figures/overall process.png)
 
 ### 2. Essentially: IIR digital filters filter gradient signals
 
@@ -143,7 +143,7 @@ The processing of historical gradients in Adam can be seen as an IIR digital fil
 
 Without adding an offset correction term, the equivalent formula for Adam can be derived from the previous section as follows:
 
-$$\begin{aligned}S(t)=-lr\cdot\frac{(1-\beta_1)\cdot[g(t)^*\beta_1^t]}{\sqrt{(1-\beta_2)\cdot[g^2(t)^*\beta_2^t]}}\end{aligned}$$
+$$S(t)=-lr\cdot\frac{(1-\beta_1)\cdot[g(t)^*\beta_1^t]}{\sqrt{(1-\beta_2)\cdot[g^2(t)^*\beta_2^t]}}$$
 
 > Where S(t) is the final step sequence; g(t) is a gradient sequence; * Represents convolution;
 
