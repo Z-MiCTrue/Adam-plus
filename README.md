@@ -34,7 +34,7 @@ matplotlib [Optional]
 
 
 
-## Quick start: modify parameters in [`Adam_plus.py`](./Adam-plus/Adam_plus.py)
+## Quick start: modify parameters in [`Adam.py`](./Adam.py)
 
 ### Instantiation of the optimizer
 ```python
