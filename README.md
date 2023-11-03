@@ -112,11 +112,13 @@ If Momentum-SGD incorporates the concept of momentum from physics into gradient 
 $$
 {m_{t}\leftarrow\beta_{1}\cdot m_{t-1}+(1-\beta_{1})\cdot g_{t}}\\{v_{t}\leftarrow\beta_{2}\cdot v_{t-1}+(1-\beta_{2})\cdot g_{t}^{2}}
 $$
+
 Iterations after iterations, these two lines are the core of Adam, if $ beta_ 1=0.9 $, unfold it to obtain:
 
 $$
 m_{100}=0.1\theta_{100}+0.1*0.9\theta_{99}+0.1*(0.9)^2\theta_{98}+0.1*(0.9)^3\theta_{97}+0.1*(0.9)^4\theta_{96}
 $$
+
 If the gradient calculated after each iteration is regarded as an impulse signal, then as the number of iterations increases, the impulse signal multiplied by its corresponding weight will appear as an exponential decay signal in time as follows:
 
 <img src="./Figures/exponential decay signal.png" alt="exponential decay signal" style="zoom:50%;" />
@@ -134,6 +136,7 @@ The system function representation of IIR digital filters is as follows:
 $$
 H(z)=\frac{Y(z)}{X(z)}=\frac{\sum_{i=0}^Ma_iz^{-i}}{1-\sum_{i=1}^Nb_iz^{-i}}=a_0\frac{\prod_{i=1}^M(1-c_iz^{-1})}{\prod_{i=1}^N(1-d_iz^{-1})}
 $$
+
 The processing of historical gradients in Adam can be seen as an IIR digital filtering process with only low order terms, which involves filtering gradients and filtering gradients squared (response amplitude). In my opinion, the correction of errors is mainly aimed at correcting the impact of zero state response.
 
 **So from this perspective, there are two ways to increase Adam's sensitivity to gradients (and vice versa):**
