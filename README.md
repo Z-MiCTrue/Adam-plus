@@ -109,7 +109,7 @@ The purpose of this section of code is to check whether the lr setting is too sm
 
 If Momentum-SGD incorporates the concept of momentum from physics into gradient descent, I would prefer to believe that Adam takes into account the concept of IIR filters in digital signal processing:
 
-![](http://latex.codecogs.com/png.latex?m_{t}\leftarrow\beta_{1}\cdot{m_{t-1}}+(1-\beta_{1})\cdot{g_{t}}\\v_{t}\leftarrow\beta_{2}\cdot{v_{t-1}}+(1-\beta_{2})\cdot{g_{t}^{2}})
+![](http://latex.codecogs.com/gif.latex?m_{t}\leftarrow\beta_{1}\cdot{m_{t-1}}+(1-\beta_{1})\cdot{g_{t}}\\v_{t}\leftarrow\beta_{2}\cdot{v_{t-1}}+(1-\beta_{2})\cdot{g_{t}^{2}})
 
 Iterations after iterations, these two lines are the core of Adam, if $\beta_ 1=0.9$, unfold it to obtain:
 
