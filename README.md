@@ -114,10 +114,10 @@ m_{t}\leftarrow\beta_{1}\cdot m_{t-1}+(1-\beta_{1})\cdot g_{t} \\
 v_{t}\leftarrow\beta_{2}\cdot v_{t-1}+(1-\beta_{2})\cdot g_{t}^{2}
 $$
 
-Iterations after iterations, these two lines are the core of Adam, if $beta_ 1=0.9$, unfold it to obtain:
+Iterations after iterations, these two lines are the core of Adam, if $\beta_ 1=0.9$, unfold it to obtain:
 
 $$
-m_{100}=0.1\theta_{100}+0.1*0.9\theta_{99}+0.1*(0.9)^2\theta_{98}+0.1*(0.9)^3\theta_{97}+0.1*(0.9)^4\theta_{96}
+m_100=0.1\theta_100+0.1*0.9\theta_99+0.1*(0.9)^2\theta_98+0.1*(0.9)^3\theta_97+0.1*(0.9)^4\theta_96
 $$
 
 If the gradient calculated after each iteration is regarded as an impulse signal, then as the number of iterations increases, the impulse signal multiplied by its corresponding weight will appear as an exponential decay signal in time as follows:
